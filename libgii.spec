@@ -1,8 +1,8 @@
 Summary:	General Input Interface library fo LibGGI
-Summary(pl):	-
+Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
 Version:	0.6
-Release:	1
+Release:	2
 Group:		Library
 Group(pl):	Biblioteki
 Copyright:	GPL
@@ -21,6 +21,18 @@ API is far from set in stone yet, and is likely to change.
 
 %description -l pl
 
+%package X11
+Summary:	LibGII X11 input
+Summary(pl):	LibGII - obs³uga urz±dzeñ wej¶ciowych w X11
+Group:		Library
+Group(pl):	Biblioteki
+Requires:	%{name} = %{version}
+
+%description X11
+X11 input for GGI
+
+%description X11 -l pl
+
 %package devel
 Summary:	Development part of LibGII
 Summary(pl):	Czê¶æ dla programistów biblioteki LibGII
@@ -34,16 +46,10 @@ Development part of LibGII.
 %description devel -l pl
 Pliki potrzebne do programowania z wykorzystaniem LibGII.
 
-%define 	_sysconfdir	/etc
-
 %prep
 %setup  -q
-#%patch0 -p1
-#%patch1 -p1
-#%patch2 -p1
 
 %build
-autoconf
 LDFLAGS="-s" ; export LDFLAGS
 %configure \
 	--disable-debug \
@@ -82,12 +88,23 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/ggi/input
 
 %{_sysconfdir}/ggi
-%attr(755,root,root) %{_bindir}/*
+%attr(755,root,root) %{_bindir}/mhub
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_libdir}/ggi/filter/*.so
-%attr(755,root,root) %{_libdir}/ggi/input/*.so
+%attr(755,root,root) %{_libdir}/ggi/input/file.so
+%attr(755,root,root) %{_libdir}/ggi/input/linux_joy.so
+%attr(755,root,root) %{_libdir}/ggi/input/linux_kbd.so
+%attr(755,root,root) %{_libdir}/ggi/input/linux_mouse.so
+%attr(755,root,root) %{_libdir}/ggi/input/mouse.so
+%attr(755,root,root) %{_libdir}/ggi/input/null.so
+%attr(755,root,root) %{_libdir}/ggi/input/spaceorb.so
+%attr(755,root,root) %{_libdir}/ggi/input/stdin.so
 
 %{_mandir}/man1/*
+
+%files X11 
+%attr(755,root,root) %{_bindir}/xsendbut
+%attr(755,root,root) %{_libdir}/ggi/input/x*.so
 
 %files devel
 %defattr(644,root,root,755)
@@ -101,8 +118,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_mandir}/man3/*
 
-
 %changelog
+* Sun Jun 20 1999 Jacek Konieczny <jajcus@pld.org.pl>
+  [0.6-2]
+- X11 subpackage added
+
 * Tue May 18 1999 Artur Frysiak <wiget@pld.org.pl>
   [0.6-1]
 - first version (writed from templete.spec)  
