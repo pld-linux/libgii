@@ -3,9 +3,10 @@ Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
 Version:	0.8
 Release:	1
-License:	GPL
+License:	BSD-like
 Group:		Libraries
 Group(de):	Libraries
+Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Source0:	ftp://ftp.ggi-project.org/pub/ggi/ggi/current/%{name}-%{version}.src.tar.bz2
@@ -31,6 +32,7 @@ Summary:	LibGII X11 input
 Summary(pl):	LibGII - obs³uga urz±dzeñ wej¶ciowych w X11
 Group:		Libraries
 Group(de):	Libraries
+Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Requires:	%{name} = %{version}
@@ -46,6 +48,7 @@ Summary:	Development part of LibGII
 Summary(pl):	Czê¶æ dla programistów biblioteki LibGII
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
