@@ -5,7 +5,7 @@
 Summary:	General Input Interface library fo LibGGI
 Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
-Version:	0.8
+Version:	0.8.1
 Release:	1
 License:	BSD-like
 Group:		Libraries
@@ -13,7 +13,7 @@ Group(de):	Libraries
 Group(es):	Bibliotecas
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-Source0:	ftp://ftp.ggi-project.org/pub/ggi/ggi/current/%{name}-%{version}.src.tar.bz2
+Source0:	ftp://ftp.ggi-project.org/pub/ggi/ggi/current/%{name}-%{version}.tar.gz
 Patch0:         %{name}-autoconf.patch
 URL:		http://www.ggi-project.org/
 BuildRequires:	XFree86-devel
@@ -70,7 +70,7 @@ Development part of LibGII.
 Pliki potrzebne do programowania z wykorzystaniem LibGII.
 
 %prep
-%setup  -q -n %{name}
+%setup  -q
 %patch0 -p1
 
 %build
@@ -136,3 +136,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/ggi/*/*.la
 %{_includedir}/*
 %{_mandir}/man3/*
+%{_mandir}/man9/*
