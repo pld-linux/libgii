@@ -1,16 +1,16 @@
 #
 # Conditional build:
-# _with_pthreads - with pthreads support
+%bcond_with	pthreads # with pthreads support
 #
 Summary:	General Input Interface library fo LibGGI
 Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
-Version:	0.8.3
+Version:	0.8.4
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.ggi-project.org/ftp/ggi/current/%{name}-%{version}.src.tar.bz2
-# Source0-md5: 3cd0f19384e963e250043095cc74a4c0
+# Source0-md5:	2c0472a01d267b7a30a1f147512c535a
 Patch0:		%{name}-ltfix.patch
 URL:		http://www.ggi-project.org/
 BuildRequires:	XFree86-devel
@@ -59,21 +59,20 @@ Pliki potrzebne do programowania z wykorzystaniem LibGII.
 
 %prep
 %setup -q
-%patch -p1
+%patch0 -p1
 
-rm -f input/xwin/xev.c
+rm -f input/xwin/xev.c m4/{libtool,ltdl}.m4
 
 %build
 %{__libtoolize}
-rm -f m4/libtool.m4
-cat m4/*.m4 > acinclude.m4
-%{__aclocal}
+%{__aclocal} -I m4
 %{__autoheader}
 %{__autoconf}
 %{__automake}
 %configure \
-	%{?_with_pthreads:--enable-mutexes=pthread} \
-	%{?!debug:--disable-debug}
+	%{?with_pthreads:--enable-mutexes=pthread} \
+	%{!?debug:--disable-debug}
+
 %{__make}
 
 %install
@@ -84,6 +83,8 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 	DESTDIR="$RPM_BUILD_ROOT"
 
 install demos/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
+
+rm -f $RPM_BUILD_ROOT%{_libdir}/ggi/{filter,input}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
