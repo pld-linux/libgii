@@ -5,16 +5,17 @@
 Summary:	General Input Interface library fo LibGGI
 Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
-Version:	0.8.1
-Release:	3
+Version:	0.8.2
+Release:	1
 License:	BSD-like
 Group:		Libraries
-Source0:	ftp://ftp.ggi-project.org/pub/ggi/ggi/current/%{name}-%{version}.tar.gz
-Patch0:		%{name}-autoconf.patch
+Source0:	ftp://ftp.ggi-project.org/pub/ggi/ggi/current/%{name}-%{version}.src.tar.bz2
+Patch0:		%{name}-ltfix.patch
 URL:		http://www.ggi-project.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	libtool >= 1:1.4.2-9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc
@@ -58,11 +59,19 @@ Development part of LibGII.
 Pliki potrzebne do programowania z wykorzystaniem LibGII.
 
 %prep
-%setup  -q
-%patch0 -p1
+%setup -q
+%patch -p1
+
+rm -f input/xwin/xev.c
 
 %build
-./autogen.sh
+%{__libtoolize}
+rm -f m4/libtool.m4
+cat m4/*.m4 > acinclude.m4
+%{__aclocal}
+%{__autoheader}
+%{__autoconf}
+%{__automake}
 %configure \
 	%{?_with_pthreads:--enable-mutexes=pthread} \
 	%{?!debug:--disable-debug}
@@ -77,24 +86,25 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 install demos/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-%post   -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
-
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post   -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
 %doc README NEWS doc/*.txt
 %dir %{_sysconfdir}/ggi
-%{_sysconfdir}/ggi/libgii.conf
-%dir %{_libdir}/ggi
-%dir %{_libdir}/ggi/filter
-%dir %{_libdir}/ggi/input
-
+%dir %{_sysconfdir}/ggi/filter
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ggi/libgii.conf
+%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ggi/filter/*
 %attr(755,root,root) %{_bindir}/mhub
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
+%dir %{_libdir}/ggi
+%dir %{_libdir}/ggi/filter
 %attr(755,root,root) %{_libdir}/ggi/filter/*.so
+%dir %{_libdir}/ggi/input
 %attr(755,root,root) %{_libdir}/ggi/input/file.so
 %attr(755,root,root) %{_libdir}/ggi/input/linux_evdev.so
 %attr(755,root,root) %{_libdir}/ggi/input/linux_joy.so
@@ -105,7 +115,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/ggi/input/spaceorb.so
 %attr(755,root,root) %{_libdir}/ggi/input/stdin.so
 %attr(755,root,root) %{_libdir}/ggi/input/tcp.so
-
 %{_mandir}/man1/*
 %{_mandir}/man7/*
 
@@ -120,7 +129,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc %{_examplesdir}/%{name}-%{version}
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_libdir}/lib*.la
-%{_libdir}/ggi/*/*.la
 %{_includedir}/*
 %{_mandir}/man3/*
-%{_mandir}/man9/*

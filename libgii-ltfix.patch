@@ -1,0 +1,16 @@
+--- libgii-0.8.2/input/xwin/Makefile.am.orig	Sat Jul  7 21:55:49 2001
++++ libgii-0.8.2/input/xwin/Makefile.am	Thu Jan 16 21:02:37 2003
+@@ -12,11 +12,8 @@
+ inputlibdir = ${libdir}/${ggi_subdir}/input
+ 
+ xev.c:	../x/xev.c
+-	rm -f xev.c
++	rm -f xev.c xev.h
+ 	ln -s ../x/xev.c .
+-
+-xev.lo:
+-	rm -f xev.lo
+-	ln -s ../x/xev.lo .
++	ln -s ../x/xev.h .
+ 
+ EXTRA_DIST = EXPSYMS
