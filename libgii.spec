@@ -1,16 +1,16 @@
 #
 # Conditional build:
-%bcond_with	pthreads # with pthreads support
+%bcond_with	pthreads	 # with pthreads support
 #
 Summary:	General Input Interface library fo LibGGI
 Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
-Version:	0.8.6
+Version:	0.8.7
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.ggi-project.org/ftp/ggi/v2.0/%{name}-%{version}.src.tar.bz2
-# Source0-md5:	eb2a55552d95ac3be6507aaa0e58a4e2
+# Source0-md5:	712c33cd8deb846accdb4fdb7dc18049
 Patch0:		%{name}-llh.patch
 URL:		http://www.ggi-project.org/
 BuildRequires:	XFree86-devel
