@@ -10,6 +10,7 @@ Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	ftp://ftp.ggi-project.org/pub/ggi/ggi/current/%{name}-%{version}.src.tar.bz2
+# Source0-md5: 3cd0f19384e963e250043095cc74a4c0
 Patch0:		%{name}-ltfix.patch
 URL:		http://www.ggi-project.org/
 BuildRequires:	XFree86-devel
