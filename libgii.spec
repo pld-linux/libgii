@@ -5,13 +5,14 @@
 Summary:	General Input Interface library fo LibGGI
 Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
-Version:	0.8.7
+Version:	0.9.0
 Release:	1
 License:	BSD-like
 Group:		Libraries
-Source0:	http://www.ggi-project.org/ftp/ggi/v2.0/%{name}-%{version}.src.tar.bz2
-# Source0-md5:	712c33cd8deb846accdb4fdb7dc18049
+Source0:	http://www.ggi-project.org/ftp/ggi/v2.1/%{name}-%{version}.src.tar.bz2
+# Source0-md5:	3c7a16c9cfe6400d9f40f918abc9670f
 Patch0:		%{name}-llh.patch
+Patch1:		%{name}-gcc4.patch
 URL:		http://www.ggi-project.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
@@ -60,6 +61,7 @@ Pliki potrzebne do programowania z wykorzystaniem LibGII.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 rm -f input/xwin/xev.c m4/{libtool,ltdl}.m4
 
