@@ -5,21 +5,23 @@ Version:	0.6
 Release:	3
 Group:		Libraries
 Group(pl):	Biblioteki
-Copyright:	GPL
+License:	GPL
 Source0:	ftp://ftp.ggi-project.org/pub/ggi/ggi/current/%{name}-%{version}.tar.bz2
 URL:		http://www.ggi-project.org/
 BuildRequires:	XFree86-devel
 BuildRoot:	/tmp/%{name}-%{version}-root
 
+%define		_sysconfdir	/etc
+
 %description
 LibGII (General Input Interface) is intended to be to input what our LibGGI
-(General Graphics Interface) library is to graphics.
-
-The goal of LibGII is to provide a single easy to use, but yet powerful,
-API for all possible input sources. However we are not there yet. The
-API is far from set in stone yet, and is likely to change.
+(General Graphics Interface) library is to graphics.  The goal of LibGII is
+to provide a single easy to use, but yet powerful, API for all possible
+input sources. However we are not there yet. The API is far from set in
+stone yet, and is likely to change.
 
 %description -l pl
+Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI.
 
 %package X11
 Summary:	LibGII X11 input
@@ -29,9 +31,10 @@ Group(pl):	Biblioteki
 Requires:	%{name} = %{version}
 
 %description X11
-X11 input for GGI
+X11 input for GGI.
 
 %description X11 -l pl
+LibGII - obs³uga urz±dzeñ wej¶ciowych w X11.
 
 %package devel
 Summary:	Development part of LibGII
@@ -52,9 +55,7 @@ Pliki potrzebne do programowania z wykorzystaniem LibGII.
 %build
 LDFLAGS="-s" ; export LDFLAGS
 %configure \
-	--disable-debug \
-	--sysconfdir=%{_sysconfdir}
-
+	--disable-debug
 make
 
 %install
@@ -66,6 +67,9 @@ make install \
 	DESTDIR="$RPM_BUILD_ROOT"
 
 install demos/*.c $RPM_BUILD_ROOT/usr/src/examples/%{name}
+
+strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.* \
+	$RPM_BUILD_ROOT%{_libdir}/ggi/*/*.so
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 	README ChangeLog NEWS doc/*.txt doc/*.sgml
@@ -79,11 +83,12 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.gz NEWS.gz
+%dir %{_sysconfdir}/ggi
+%{_sysconfdir}/ggi/libgii.conf
 %dir %{_libdir}/ggi
 %dir %{_libdir}/ggi/filter
 %dir %{_libdir}/ggi/input
 
-%{_sysconfdir}/ggi
 %attr(755,root,root) %{_bindir}/mhub
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_libdir}/ggi/filter/*.so
@@ -98,7 +103,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{_mandir}/man1/*
 
-%files X11 
+%files X11
 %attr(755,root,root) %{_bindir}/xsendbut
 %attr(755,root,root) %{_libdir}/ggi/input/x*.so
 
