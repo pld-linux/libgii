@@ -1,16 +1,12 @@
---- libgii-0.8.2/input/xwin/Makefile.am.orig	Sat Jul  7 21:55:49 2001
-+++ libgii-0.8.2/input/xwin/Makefile.am	Thu Jan 16 21:02:37 2003
-@@ -12,11 +12,8 @@
- inputlibdir = ${libdir}/${ggi_subdir}/input
+--- libgii-0.8.4/input/xwin/Makefile.am.orig	2003-04-08 12:56:18.000000000 +0200
++++ libgii-0.8.4/input/xwin/Makefile.am	2003-12-22 01:00:23.206391240 +0100
+@@ -17,9 +17,4 @@
+ 	rm -f xev.h
+ 	ln -s ../x/xev.h .
  
- xev.c:	../x/xev.c
--	rm -f xev.c
-+	rm -f xev.c xev.h
- 	ln -s ../x/xev.c .
--
+-# Workaround for Darwin
 -xev.lo:
 -	rm -f xev.lo
 -	ln -s ../x/xev.lo .
-+	ln -s ../x/xev.h .
- 
+-
  EXTRA_DIST = EXPSYMS
