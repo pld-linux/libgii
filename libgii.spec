@@ -2,7 +2,7 @@ Summary:	General Input Interface library fo LibGGI
 Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
 Version:	0.6
-Release:	2
+Release:	3
 Group:		Libraries
 Group(pl):	Biblioteki
 Copyright:	GPL
@@ -69,10 +69,6 @@ install demos/*.c $RPM_BUILD_ROOT/usr/src/examples/%{name}
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 	README ChangeLog NEWS doc/*.txt doc/*.sgml
-
-%pre
-
-%preun
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
