@@ -10,7 +10,7 @@ Release:	2
 License:	BSD-like
 Group:		Libraries
 Source0:	ftp://ftp.ggi-project.org/pub/ggi/ggi/current/%{name}-%{version}.tar.gz
-Patch0:         %{name}-autoconf.patch
+Patch0:		%{name}-autoconf.patch
 URL:		http://www.ggi-project.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
@@ -29,9 +29,9 @@ is far from set in stone yet, and is likely to change.
 %description -l pl
 Biblioteka LibGII (General Intput Interface) zosta³a przewidziana do
 obs³ugi urz±dzeñ wej¶ciowych, podobnie jak LibGGI (General Graphics
-Interface) - graficznych urzadzeñ wyj¶ciowych. G³ównym celem biblioteki
-jest dostarczenie jednolitego i prostego w u¿yciu API dla wszystkich
-mo¿liwych urz±dzeñ wej¶ciowych.
+Interface) - graficznych urzadzeñ wyj¶ciowych. G³ównym celem
+biblioteki jest dostarczenie jednolitego i prostego w u¿yciu API dla
+wszystkich mo¿liwych urz±dzeñ wej¶ciowych.
 
 %package X11
 Summary:	LibGII X11 input
