@@ -9,7 +9,7 @@ Copyright:	GPL
 Source0:	ftp://ftp.ggi-project.org/pub/ggi/ggi/current/%{name}-%{version}.tar.bz2
 URL:		http://www.ggi-project.org/
 BuildPrereq:	XFree86-devel
-BuildRoot:   	/tmp/%{name}-%{version}-root
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 LibGII (General Input Interface) is intended to be to input what our LibGGI
