@@ -1,13 +1,13 @@
 Summary:	General Input Interface library fo LibGGI
 Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
-Version:	0.6
-Release:	4
+Version:	0.7
+Release:	1
+License:	GPL
 Group:		Libraries
 Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-License:	GPL
 Source0:	ftp://ftp.ggi-project.org/pub/ggi/ggi/current/%{name}-%{version}.tar.bz2
 URL:		http://www.ggi-project.org/
 BuildRequires:	XFree86-devel
@@ -65,14 +65,14 @@ Pliki potrzebne do programowania z wykorzystaniem LibGII.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_prefix}/src/examples/%{name}
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__make} install \
 	DESTDIR="$RPM_BUILD_ROOT"
 
-install demos/*.c $RPM_BUILD_ROOT%{_prefix}/src/examples/%{name}
+install demos/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-gzip -9nf README ChangeLog NEWS doc/*.txt doc/*.sgml
+gzip -9nf README ChangeLog NEWS doc/*.txt
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -110,7 +110,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc *.gz %doc doc/*.txt* doc/*.sgml*
-%doc %{_examplesdir}/%{name}
+%doc %{_examplesdir}/%{name}-%{version}
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
 %attr(755,root,root) %{_libdir}/ggi/*/*.la
