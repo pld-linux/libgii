@@ -96,7 +96,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README NEWS doc/*.txt
+%doc FAQ NEWS README doc/README.directx
 %dir %{_sysconfdir}/ggi
 %dir %{_sysconfdir}/ggi/filter
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ggi/libgii.conf
