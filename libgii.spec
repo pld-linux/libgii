@@ -5,7 +5,7 @@
 Summary:	General Input Interface library fo LibGGI
 Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
-Version:	0.8.2
+Version:	0.8.3
 Release:	1
 License:	BSD-like
 Group:		Libraries
