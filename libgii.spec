@@ -59,7 +59,7 @@ Pliki potrzebne do programowania z wykorzystaniem LibGII.
 LDFLAGS="-s" ; export LDFLAGS
 %configure \
 	--disable-debug
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
