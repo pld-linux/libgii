@@ -1,14 +1,15 @@
 Summary:	General Input Interface library fo LibGGI
 Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
-Version:	0.7
+Version:	0.8
 Release:	1
 License:	GPL
 Group:		Libraries
 Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
-Source0:	ftp://ftp.ggi-project.org/pub/ggi/ggi/current/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.ggi-project.org/pub/ggi/ggi/current/%{name}-%{version}.src.tar.bz2
+Patch0:         %{name}-autoconf.patch
 URL:		http://www.ggi-project.org/
 BuildRequires:	XFree86-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -56,9 +57,11 @@ Development part of LibGII.
 Pliki potrzebne do programowania z wykorzystaniem LibGII.
 
 %prep
-%setup  -q
+%setup  -q -n %{name}
+%patch0 -p1
 
 %build
+./autogen.sh
 %configure \
 	--disable-debug
 %{__make}
@@ -92,6 +95,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %attr(755,root,root) %{_libdir}/ggi/filter/*.so
 %attr(755,root,root) %{_libdir}/ggi/input/file.so
+%attr(755,root,root) %{_libdir}/ggi/input/linux_evdev.so
 %attr(755,root,root) %{_libdir}/ggi/input/linux_joy.so
 %attr(755,root,root) %{_libdir}/ggi/input/linux_kbd.so
 %attr(755,root,root) %{_libdir}/ggi/input/linux_mouse.so
@@ -99,8 +103,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/ggi/input/null.so
 %attr(755,root,root) %{_libdir}/ggi/input/spaceorb.so
 %attr(755,root,root) %{_libdir}/ggi/input/stdin.so
+%attr(755,root,root) %{_libdir}/ggi/input/tcp.so
 
 %{_mandir}/man1/*
+%{_mandir}/man7/*
 
 %files X11
 %defattr(644,root,root,755)
@@ -109,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc *.gz %doc doc/*.txt* doc/*.sgml*
+%doc *.gz %doc doc/*.txt* doc/docbook/*.sgml*
 %doc %{_examplesdir}/%{name}-%{version}
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
