@@ -5,13 +5,13 @@
 Summary:	General Input Interface library fo LibGGI
 Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
-Version:	0.8.4
+Version:	0.8.5
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.ggi-project.org/ftp/ggi/current/%{name}-%{version}.src.tar.bz2
-# Source0-md5:	2c0472a01d267b7a30a1f147512c535a
-Patch0:		%{name}-ltfix.patch
+# Source0-md5:	1584ff2417198d413252a13ce4b6c80f
+Patch0:		%{name}-llh.patch
 URL:		http://www.ggi-project.org/
 BuildRequires:	XFree86-devel
 BuildRequires:	autoconf
@@ -37,7 +37,7 @@ wszystkich mo¿liwych urz±dzeñ wej¶ciowych.
 Summary:	LibGII X11 input
 Summary(pl):	LibGII - obs³uga urz±dzeñ wej¶ciowych w X11
 Group:		Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description X11
 X11 input for GGI.
@@ -49,7 +49,7 @@ LibGII - obs³uga urz±dzeñ wej¶ciowych w X11.
 Summary:	Development part of LibGII
 Summary(pl):	Czê¶æ dla programistów biblioteki LibGII
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Development part of LibGII.
