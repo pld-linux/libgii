@@ -29,7 +29,7 @@ is far from set in stone yet, and is likely to change.
 %description -l pl
 Biblioteka LibGII (General Intput Interface) zosta³a przewidziana do
 obs³ugi urz±dzeñ wej¶ciowych, podobnie jak LibGGI (General Graphics
-Interface) - graficznych urzadzeñ wyj¶ciowych. G³ównym celem
+Interface) - graficznych urz±dzeñ wyj¶ciowych. G³ównym celem
 biblioteki jest dostarczenie jednolitego i prostego w u¿yciu API dla
 wszystkich mo¿liwych urz±dzeñ wej¶ciowych.
 
