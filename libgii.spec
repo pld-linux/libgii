@@ -6,7 +6,7 @@ Summary:	General Input Interface library fo LibGGI
 Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
 Version:	0.8.1
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Libraries
 Group(de):	Libraries
@@ -129,7 +129,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc *.gz %doc doc/*.txt* doc/docbook/*.sgml*
+%doc *.gz
+%doc doc/*.txt*
 %doc %{_examplesdir}/%{name}-%{version}
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
