@@ -1,3 +1,7 @@
+#
+# Conditional build:
+# _with_pthreads - with pthreads support
+#
 Summary:	General Input Interface library fo LibGGI
 Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
@@ -13,6 +17,8 @@ Source0:	ftp://ftp.ggi-project.org/pub/ggi/ggi/current/%{name}-%{version}.src.ta
 Patch0:         %{name}-autoconf.patch
 URL:		http://www.ggi-project.org/
 BuildRequires:	XFree86-devel
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc
@@ -25,7 +31,11 @@ for all possible input sources. However we are not there yet. The API
 is far from set in stone yet, and is likely to change.
 
 %description -l pl
-Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI.
+Biblioteka LibGII (General Intput Interface) zosta³a przewidziana do
+obs³ugi urz±dzeñ wej¶ciowych, podobnie jak LibGGI (General Graphics
+Interface) - graficznych urzadzeñ wyj¶ciowych. G³ównym celem biblioteki
+jest dostarczenie jednolitego i prostego w u¿yciu API dla wszystkich
+mo¿liwych urz±dzeñ wej¶ciowych.
 
 %package X11
 Summary:	LibGII X11 input
@@ -66,7 +76,8 @@ Pliki potrzebne do programowania z wykorzystaniem LibGII.
 %build
 ./autogen.sh
 %configure \
-	--disable-debug
+	%{?_with_pthreads:--enable-mutexes=pthread} \
+	%{?!debug:--disable-debug}
 %{__make}
 
 %install
