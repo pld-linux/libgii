@@ -19,8 +19,6 @@ BuildRequires:	automake
 BuildRequires:	libtool >= 1:1.4.2-9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_sysconfdir	/etc
-
 %description
 LibGII (General Input Interface) is intended to be to input what our
 LibGGI (General Graphics Interface) library is to graphics. The goal
