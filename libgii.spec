@@ -119,8 +119,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog
 %doc %{_examplesdir}/%{name}-%{version}
 %attr(755,root,root) %{_libdir}/lib*.so
-%attr(755,root,root) %{_libdir}/lib*.la
-%attr(755,root,root) %{_libdir}/ggi/*/*.la
+%{_libdir}/lib*.la
+%{_libdir}/ggi/*/*.la
 %{_includedir}/*
 %{_mandir}/man3/*
 %{_mandir}/man9/*
