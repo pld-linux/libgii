@@ -1,0 +1,12 @@
+diff -Nru libgii.orig/configure.in libgii/configure.in
+--- libgii.orig/configure.in	Tue Jul 10 21:01:01 2001
++++ libgii/configure.in	Sun Jul 22 13:40:02 2001
+@@ -245,7 +245,7 @@
+ dnl Functions of the form func(num), func(pointer) or func(pointer,pointer)
+ dnl should go here instead of above.
+ 
+-AC_CHECK_WINFUNCS(gettimeofday strdup nanosleep usleep _exit \
++AC_CHECK_FUNCS(gettimeofday strdup nanosleep usleep _exit \
+ 	Sleep GetSystemTime)
+ 
+ 
