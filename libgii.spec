@@ -2,8 +2,9 @@ Summary:	General Input Interface library fo LibGGI
 Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
 Version:	0.6
-Release:	3
+Release:	4
 Group:		Libraries
+Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 License:	GPL
@@ -28,6 +29,7 @@ Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI.
 Summary:	LibGII X11 input
 Summary(pl):	LibGII - obs³uga urz±dzeñ wej¶ciowych w X11
 Group:		Libraries
+Group(de):	Libraries
 Group(fr):	Librairies
 Group(pl):	Biblioteki
 Requires:	%{name} = %{version}
@@ -42,6 +44,7 @@ LibGII - obs³uga urz±dzeñ wej¶ciowych w X11.
 Summary:	Development part of LibGII
 Summary(pl):	Czê¶æ dla programistów biblioteki LibGII
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
@@ -56,14 +59,12 @@ Pliki potrzebne do programowania z wykorzystaniem LibGII.
 %setup  -q
 
 %build
-LDFLAGS="-s" ; export LDFLAGS
 %configure \
 	--disable-debug
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_prefix}/src/examples/%{name}
 
 %{__make} install \
@@ -71,11 +72,7 @@ install -d $RPM_BUILD_ROOT%{_prefix}/src/examples/%{name}
 
 install demos/*.c $RPM_BUILD_ROOT%{_prefix}/src/examples/%{name}
 
-strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.* \
-	$RPM_BUILD_ROOT%{_libdir}/ggi/*/*.so
-
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
-	README ChangeLog NEWS doc/*.txt doc/*.sgml
+gzip -9nf README ChangeLog NEWS doc/*.txt doc/*.sgml
 
 %post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
@@ -85,7 +82,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.gz NEWS.gz
 %dir %{_sysconfdir}/ggi
 %{_sysconfdir}/ggi/libgii.conf
 %dir %{_libdir}/ggi
@@ -113,12 +109,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/*.txt* doc/*.sgml* ChangeLog.gz
-%doc %{_prefix}/src/examples/%{name}
-
-%{_includedir}/*
+%doc *.gz %doc doc/*.txt* doc/*.sgml*
+%doc %{_examplesdir}/%{name}
 %attr(755,root,root) %{_libdir}/lib*.so
 %attr(755,root,root) %{_libdir}/lib*.la
 %attr(755,root,root) %{_libdir}/ggi/*/*.la
-
+%{_includedir}/*
 %{_mandir}/man3/*
