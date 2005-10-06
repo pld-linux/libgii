@@ -5,12 +5,12 @@
 Summary:	General Input Interface library fo LibGGI
 Summary(pl):	Biblioteka do obs³ugi urz±dzeñ wej¶ciowych dla GGI
 Name:		libgii
-Version:	0.9.1
+Version:	0.9.2
 Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.ggi-project.org/ftp/ggi/v2.1/%{name}-%{version}.src.tar.bz2
-# Source0-md5:	27d5f187b1b5fe435454b27fcf3af3e6
+# Source0-md5:	cf85e55eb420ecbbbf901dde98b5877a
 Patch0:		%{name}-llh.patch
 URL:		http://www.ggi-project.org/
 BuildRequires:	XFree86-devel
