@@ -97,8 +97,8 @@ rm -rf $RPM_BUILD_ROOT
 %doc FAQ NEWS README doc/README.directx
 %dir %{_sysconfdir}/ggi
 %dir %{_sysconfdir}/ggi/filter
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ggi/libgii.conf
-%config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/ggi/filter/*
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ggi/libgii.conf
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ggi/filter/*
 %attr(755,root,root) %{_bindir}/mhub
 %attr(755,root,root) %{_libdir}/lib*.so.*.*
 %dir %{_libdir}/ggi
