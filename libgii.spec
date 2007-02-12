@@ -3,7 +3,7 @@
 %bcond_with	pthreads	 # with pthreads support
 #
 Summary:	General Input Interface library fo LibGGI
-Summary(pl):	Biblioteka do obs≥ugi urz±dzeÒ wej∂ciowych dla GGI
+Summary(pl.UTF-8):   Biblioteka do obs≈Çugi urzƒÖdze≈Ñ wej≈õciowych dla GGI
 Name:		libgii
 Version:	0.9.2
 Release:	1
@@ -26,35 +26,35 @@ of LibGII is to provide a single easy to use, but yet powerful, API
 for all possible input sources. However we are not there yet. The API
 is far from set in stone yet, and is likely to change.
 
-%description -l pl
-Biblioteka LibGII (General Intput Interface) zosta≥a przewidziana do
-obs≥ugi urz±dzeÒ wej∂ciowych, podobnie jak LibGGI (General Graphics
-Interface) - graficznych urz±dzeÒ wyj∂ciowych. G≥Ûwnym celem
-biblioteki jest dostarczenie jednolitego i prostego w uøyciu API dla
-wszystkich moøliwych urz±dzeÒ wej∂ciowych.
+%description -l pl.UTF-8
+Biblioteka LibGII (General Intput Interface) zosta≈Ça przewidziana do
+obs≈Çugi urzƒÖdze≈Ñ wej≈õciowych, podobnie jak LibGGI (General Graphics
+Interface) - graficznych urzƒÖdze≈Ñ wyj≈õciowych. G≈Ç√≥wnym celem
+biblioteki jest dostarczenie jednolitego i prostego w u≈ºyciu API dla
+wszystkich mo≈ºliwych urzƒÖdze≈Ñ wej≈õciowych.
 
 %package X11
 Summary:	LibGII X11 input
-Summary(pl):	LibGII - obs≥uga urz±dzeÒ wej∂ciowych w X11
+Summary(pl.UTF-8):   LibGII - obs≈Çuga urzƒÖdze≈Ñ wej≈õciowych w X11
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description X11
 X11 input for GGI.
 
-%description X11 -l pl
-LibGII - obs≥uga urz±dzeÒ wej∂ciowych w X11.
+%description X11 -l pl.UTF-8
+LibGII - obs≈Çuga urzƒÖdze≈Ñ wej≈õciowych w X11.
 
 %package devel
 Summary:	Development part of LibGII
-Summary(pl):	CzÍ∂Ê dla programistÛw biblioteki LibGII
+Summary(pl.UTF-8):   Czƒô≈õƒá dla programist√≥w biblioteki LibGII
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Development part of LibGII.
 
-%description devel -l pl
+%description devel -l pl.UTF-8
 Pliki potrzebne do programowania z wykorzystaniem LibGII.
 
 %prep
