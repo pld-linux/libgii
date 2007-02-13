@@ -3,7 +3,7 @@
 %bcond_with	pthreads	 # with pthreads support
 #
 Summary:	General Input Interface library fo LibGGI
-Summary(pl.UTF-8):   Biblioteka do obsługi urządzeń wejściowych dla GGI
+Summary(pl.UTF-8):	Biblioteka do obsługi urządzeń wejściowych dla GGI
 Name:		libgii
 Version:	0.9.2
 Release:	1
@@ -35,7 +35,7 @@ wszystkich możliwych urządzeń wejściowych.
 
 %package X11
 Summary:	LibGII X11 input
-Summary(pl.UTF-8):   LibGII - obsługa urządzeń wejściowych w X11
+Summary(pl.UTF-8):	LibGII - obsługa urządzeń wejściowych w X11
 Group:		Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -47,7 +47,7 @@ LibGII - obsługa urządzeń wejściowych w X11.
 
 %package devel
 Summary:	Development part of LibGII
-Summary(pl.UTF-8):   Część dla programistów biblioteki LibGII
+Summary(pl.UTF-8):	Część dla programistów biblioteki LibGII
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
