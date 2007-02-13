@@ -27,7 +27,7 @@ for all possible input sources. However we are not there yet. The API
 is far from set in stone yet, and is likely to change.
 
 %description -l pl.UTF-8
-Biblioteka LibGII (General Intput Interface) została przewidziana do
+Biblioteka LibGII (General Input Interface) została przewidziana do
 obsługi urządzeń wejściowych, podobnie jak LibGGI (General Graphics
 Interface) - graficznych urządzeń wyjściowych. Głównym celem
 biblioteki jest dostarczenie jednolitego i prostego w użyciu API dla
