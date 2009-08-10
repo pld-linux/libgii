@@ -1,3 +1,6 @@
+# TODO:
+# - static subpackage
+# - fix files
 #
 # Conditional build:
 %bcond_with	pthreads	 # with pthreads support
@@ -5,13 +8,12 @@
 Summary:	General Input Interface library fo LibGGI
 Summary(pl.UTF-8):	Biblioteka do obsługi urządzeń wejściowych dla GGI
 Name:		libgii
-Version:	0.9.2
-Release:	2
+Version:	1.0.2
+Release:	0.1
 License:	BSD-like
 Group:		Libraries
-Source0:	http://www.ggi-project.org/ftp/ggi/v2.1/%{name}-%{version}.src.tar.bz2
-# Source0-md5:	cf85e55eb420ecbbbf901dde98b5877a
-Patch0:		%{name}-llh.patch
+Source0:	http://www.ggi-project.org/ftp/ggi/v2.2/%{name}-%{version}.src.tar.bz2
+# Source0-md5:	e002b3b3b7fae2b2558fe7ac854359b7
 URL:		http://www.ggi-project.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake
@@ -59,9 +61,8 @@ Pliki potrzebne do programowania z wykorzystaniem LibGII.
 
 %prep
 %setup -q
-%patch0 -p1
 
-rm -f input/xwin/xev.c m4/{libtool,ltdl}.m4
+rm acinclude.m4 m4/lt*.m4
 
 %build
 %{__libtoolize}
