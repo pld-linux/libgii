@@ -1,5 +1,4 @@
 # TODO:
-# - static subpackage
 # - fix files
 #
 # Conditional build:
@@ -58,6 +57,18 @@ Development part of LibGII.
 
 %description devel -l pl.UTF-8
 Pliki potrzebne do programowania z wykorzystaniem LibGII.
+
+%package static
+Summary:	Static LibGII library
+Summary(pl.UTF-8):	Biblioteka statyczna LibGII
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static LibGII library.
+
+%description static -l pl.UTF-8
+Biblioteka statyczna LibGII.
 
 %prep
 %setup -q
@@ -132,3 +143,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/*
 %{_mandir}/man3/*
 %{_examplesdir}/%{name}-%{version}
+
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libgg.a
+%{_libdir}/libgii.a
