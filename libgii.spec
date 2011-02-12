@@ -1,5 +1,3 @@
-# TODO:
-# - fix files
 #
 # Conditional build:
 %bcond_with	pthreads	 # with pthreads support
@@ -8,7 +6,7 @@ Summary:	General Input Interface library fo LibGGI
 Summary(pl.UTF-8):	Biblioteka do obsługi urządzeń wejściowych dla GGI
 Name:		libgii
 Version:	1.0.2
-Release:	0.1
+Release:	1
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.ggi-project.org/ftp/ggi/v2.2/%{name}-%{version}.src.tar.bz2
@@ -112,7 +110,10 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ggi/libgii.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ggi/filter/*
 %attr(755,root,root) %{_bindir}/mhub
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/libgg.so.*.*
+%attr(755,root,root) %{_libdir}/libgii.so.*.*
+%attr(755,root,root) %ghost %{_libdir}/libgg.so.1
+%attr(755,root,root) %ghost %{_libdir}/libgii.so.1
 %dir %{_libdir}/ggi
 %dir %{_libdir}/ggi/filter
 %attr(755,root,root) %{_libdir}/ggi/filter/*.so
@@ -122,12 +123,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/ggi/input/linux_joy.so
 %attr(755,root,root) %{_libdir}/ggi/input/linux_kbd.so
 %attr(755,root,root) %{_libdir}/ggi/input/linux_mouse.so
+%attr(755,root,root) %{_libdir}/ggi/input/lk201.so
 %attr(755,root,root) %{_libdir}/ggi/input/mouse.so
 %attr(755,root,root) %{_libdir}/ggi/input/null.so
 %attr(755,root,root) %{_libdir}/ggi/input/spaceorb.so
 %attr(755,root,root) %{_libdir}/ggi/input/stdin.so
 %attr(755,root,root) %{_libdir}/ggi/input/tcp.so
 %{_mandir}/man1/*
+%{_mandir}/man5/*
 %{_mandir}/man7/*
 
 %files X11
@@ -138,8 +141,10 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %doc ChangeLog
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
+%attr(755,root,root) %{_libdir}/libgg.so
+%attr(755,root,root) %{_libdir}/libgii.so
+%{_libdir}/libgg.la
+%{_libdir}/libgii.la
 %{_includedir}/*
 %{_mandir}/man3/*
 %{_examplesdir}/%{name}-%{version}
