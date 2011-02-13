@@ -94,7 +94,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 install demos/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/ggi/{filter,input}/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/ggi/{filter,input}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -108,7 +108,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/ggi
 %dir %{_sysconfdir}/ggi/filter
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ggi/libgii.conf
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ggi/filter/*
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ggi/filter/keytrans
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ggi/filter/mouse
 %attr(755,root,root) %{_bindir}/mhub
 %attr(755,root,root) %{_libdir}/libgg.so.*.*
 %attr(755,root,root) %{_libdir}/libgii.so.*.*
@@ -116,7 +117,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %ghost %{_libdir}/libgii.so.1
 %dir %{_libdir}/ggi
 %dir %{_libdir}/ggi/filter
-%attr(755,root,root) %{_libdir}/ggi/filter/*.so
+%attr(755,root,root) %{_libdir}/ggi/filter/keytrans.so
+%attr(755,root,root) %{_libdir}/ggi/filter/mouse.so
+%attr(755,root,root) %{_libdir}/ggi/filter/save.so
+%attr(755,root,root) %{_libdir}/ggi/filter/tcp.so
 %dir %{_libdir}/ggi/input
 %attr(755,root,root) %{_libdir}/ggi/input/file.so
 %attr(755,root,root) %{_libdir}/ggi/input/linux_evdev.so
@@ -129,14 +133,15 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/ggi/input/spaceorb.so
 %attr(755,root,root) %{_libdir}/ggi/input/stdin.so
 %attr(755,root,root) %{_libdir}/ggi/input/tcp.so
-%{_mandir}/man1/*
-%{_mandir}/man5/*
+%{_mandir}/man1/mhub.1*
+%{_mandir}/man1/xsendbut.1*
+%{_mandir}/man5/libgii.conf.5*
 %{_mandir}/man7/*
 
 %files X11
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/xsendbut
-%attr(755,root,root) %{_libdir}/ggi/input/x*.so
+%attr(755,root,root) %{_libdir}/ggi/input/x.so
 
 %files devel
 %defattr(644,root,root,755)
@@ -145,7 +150,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgii.so
 %{_libdir}/libgg.la
 %{_libdir}/libgii.la
-%{_includedir}/*
+%{_includedir}/ggi
 %{_mandir}/man3/*
 %{_examplesdir}/%{name}-%{version}
 
