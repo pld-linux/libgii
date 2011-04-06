@@ -6,7 +6,7 @@ Summary:	General Input Interface library fo LibGGI
 Summary(pl.UTF-8):	Biblioteka do obsługi urządzeń wejściowych dla GGI
 Name:		libgii
 Version:	1.0.2
-Release:	1
+Release:	2
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.ggi-project.org/ftp/ggi/v2.2/%{name}-%{version}.src.tar.bz2
@@ -95,6 +95,7 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 install demos/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ggi/{filter,input}/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -148,8 +149,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc ChangeLog
 %attr(755,root,root) %{_libdir}/libgg.so
 %attr(755,root,root) %{_libdir}/libgii.so
-%{_libdir}/libgg.la
-%{_libdir}/libgii.la
 %{_includedir}/ggi
 %{_mandir}/man3/*
 %{_examplesdir}/%{name}-%{version}
