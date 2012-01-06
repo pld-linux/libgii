@@ -51,6 +51,10 @@ Summary:	Development part of LibGII
 Summary(pl.UTF-8):	Część dla programistów biblioteki LibGII
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+%if %{with static_modules}
+Requires:	xorg-lib-libX11-devel
+Requires:	xorg-lib-libXxf86dga-devel
+%endif
 
 %description devel
 Development part of LibGII.
