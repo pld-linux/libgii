@@ -1,21 +1,23 @@
 #
 # Conditional build:
-%bcond_with	pthreads	 # with pthreads support
+%bcond_with	pthreads	# with pthreads support
+%bcond_with	static_modules	# build static library AND make all modules builtin (also in shared lib)
 #
 Summary:	General Input Interface library fo LibGGI
 Summary(pl.UTF-8):	Biblioteka do obsługi urządzeń wejściowych dla GGI
 Name:		libgii
 Version:	1.0.2
-Release:	3
+Release:	4
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.ggi-project.org/ftp/ggi/v2.2/%{name}-%{version}.src.tar.bz2
 # Source0-md5:	e002b3b3b7fae2b2558fe7ac854359b7
 URL:		http://www.ggi-project.org/
 BuildRequires:	autoconf >= 2.59-9
-BuildRequires:	automake
-BuildRequires:	libtool >= 1:1.4.2-9
+BuildRequires:	automake >= 1.4
+BuildRequires:	libtool >= 2:2.0
 BuildRequires:	xorg-lib-libX11-devel
+BuildRequires:	xorg-lib-libXxf86dga-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -71,7 +73,7 @@ Biblioteka statyczna LibGII.
 %prep
 %setup -q
 
-rm acinclude.m4 m4/lt*.m4
+%{__rm} acinclude.m4 m4/lt*.m4
 
 %build
 %{__libtoolize}
@@ -80,6 +82,7 @@ rm acinclude.m4 m4/lt*.m4
 %{__autoconf}
 %{__automake}
 %configure \
+	%{!?with_static_modules:--disable-static} \
 	%{?with_pthreads:--enable-mutexes=pthread} \
 	%{!?debug:--disable-debug}
 
@@ -95,6 +98,8 @@ install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 install demos/*.c $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__rm} $RPM_BUILD_ROOT%{_libdir}/ggi/{filter,input}/*.la
+# inputs not supported on Linux
+%{__rm} $RPM_BUILD_ROOT%{_mandir}/man7/input-{directx,quartz}.7
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -104,16 +109,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc FAQ NEWS README doc/README.directx
+%doc FAQ NEWS README
 %dir %{_sysconfdir}/ggi
 %dir %{_sysconfdir}/ggi/filter
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ggi/libgii.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ggi/filter/keytrans
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/ggi/filter/mouse
 %attr(755,root,root) %{_bindir}/mhub
-%attr(755,root,root) %{_libdir}/libgg.so.*.*
-%attr(755,root,root) %{_libdir}/libgii.so.*.*
+%attr(755,root,root) %{_libdir}/libgg.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgg.so.1
+%attr(755,root,root) %{_libdir}/libgii.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libgii.so.1
 %dir %{_libdir}/ggi
 %dir %{_libdir}/ggi/filter
@@ -134,14 +139,28 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/ggi/input/stdin.so
 %attr(755,root,root) %{_libdir}/ggi/input/tcp.so
 %{_mandir}/man1/mhub.1*
-%{_mandir}/man1/xsendbut.1*
 %{_mandir}/man5/libgii.conf.5*
-%{_mandir}/man7/*
+%{_mandir}/man7/filter-key.7*
+%{_mandir}/man7/filter-keytrans*
+%{_mandir}/man7/filter-mouse.7*
+%{_mandir}/man7/filter-save.7*
+%{_mandir}/man7/filter-tcp.7*
+%{_mandir}/man7/input-file.7*
+%{_mandir}/man7/input-linux-evdev.7*
+%{_mandir}/man7/input-linux-kbd.7*
+%{_mandir}/man7/input-linux-mouse.7*
+%{_mandir}/man7/input-lk201.7*
+%{_mandir}/man7/input-mouse.7*
+%{_mandir}/man7/input-tcp.7*
+%{_mandir}/man7/libgg.7*
+%{_mandir}/man7/libgii.7*
 
 %files X11
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/xsendbut
 %attr(755,root,root) %{_libdir}/ggi/input/x.so
+%{_mandir}/man1/xsendbut.1*
+%{_mandir}/man7/input-x.7*
 
 %files devel
 %defattr(644,root,root,755)
@@ -151,10 +170,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libgg.la
 %{_libdir}/libgii.la
 %{_includedir}/ggi
-%{_mandir}/man3/*
+%{_mandir}/man3/GG_*.3*
+%{_mandir}/man3/gg*.3*
+%{_mandir}/man3/gii*.3*
 %{_examplesdir}/%{name}-%{version}
 
+%if %{with static_modules}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libgg.a
 %{_libdir}/libgii.a
+%endif
