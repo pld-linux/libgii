@@ -7,11 +7,12 @@ Summary:	General Input Interface library fo LibGGI
 Summary(pl.UTF-8):	Biblioteka do obsługi urządzeń wejściowych dla GGI
 Name:		libgii
 Version:	1.0.2
-Release:	4
+Release:	5
 License:	BSD-like
 Group:		Libraries
 Source0:	http://www.ggi-project.org/ftp/ggi/v2.2/%{name}-%{version}.src.tar.bz2
 # Source0-md5:	e002b3b3b7fae2b2558fe7ac854359b7
+Patch0:		format-security.patch
 URL:		http://www.ggi-project.org/
 BuildRequires:	autoconf >= 2.59-9
 BuildRequires:	automake >= 1.4
@@ -76,6 +77,7 @@ Biblioteka statyczna LibGII.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %{__rm} acinclude.m4 m4/lt*.m4
 
